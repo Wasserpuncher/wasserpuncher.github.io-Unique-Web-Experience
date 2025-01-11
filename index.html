@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A truly bizarre and unique website experience for developers and hackers alike.">
+  <title>Mind-Bending Web Experience</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: linear-gradient(45deg, #ff0066, #3333ff);
+      animation: bgShift 5s infinite alternate;
+    }
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+    }
+    .content h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    .content p {
+      font-size: 1.5rem;
+    }
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: 2px solid white;
+      border-radius: 5px;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .button:hover {
+      background: white;
+      color: black;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="weirdCanvas"></canvas>
+  <div class="content">
+    <h1>Welcome to the Uncanny Web</h1>
+    <p>Where logic ends, and chaos begins...</p>
+    <button class="button" onclick="unleashMadness()">Unleash Madness</button>
+  </div>
+
+  <script>
+    // Dynamic Canvas Art
+    const canvas = document.getElementById('weirdCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function drawRandomShapes() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < 100; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = Math.random() * 50;
+        const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    setInterval(drawRandomShapes, 500);
+
+    // Madness Activation
+    function unleashMadness() {
+      const phrases = [
+        "You're in a simulation.",
+        "Wait, are you supposed to be here?",
+        "What is reality?",
+        "Something feels... off.",
+        "Keep going. Deeper."
+      ];
+
+      const newElement = document.createElement('div');
+      newElement.style.position = 'absolute';
+      newElement.style.top = `${Math.random() * 100}vh`;
+      newElement.style.left = `${Math.random() * 100}vw`;
+      newElement.style.color = 'white';
+      newElement.style.fontSize = '1.5rem';
+      newElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+      document.body.appendChild(newElement);
+
+      setTimeout(() => {
+        newElement.remove();
+      }, 3000);
+
+      // Trigger a glitch effect
+      document.body.style.animation = 'none';
+      setTimeout(() => {
+        document.body.style.animation = '';
+      }, 100);
+
+      // Randomly invert colors
+      document.body.style.filter = 'invert(1)';
+      setTimeout(() => {
+        document.body.style.filter = 'invert(0)';
+      }, 200);
+    }
+
+    // Resizing canvas on window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
